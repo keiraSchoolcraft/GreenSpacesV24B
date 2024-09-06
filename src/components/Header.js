@@ -1,5 +1,5 @@
 import React from 'react';
-import serendpt from '../assets/SerenDPTLOGO Black.png'
+import serendpt from '../assets/SerenDPTLOGO Red.png'
 import './Header.css'
 import vpclogo from '../assets/VPCsquare.png'
 
