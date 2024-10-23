@@ -27,31 +27,33 @@ const CustomDropdown = ({ tag, layers, onSelectLayer }) => {
         };
     }, []);
 
-    return (
-        <div className="custom-dropdown" ref={dropdownRef}>
-            <button className="dropdown-toggle" onClick={handleToggleDropdown}>
-                <span className="dropdown-label">{tag}</span>  {/* Display the tag */}
-                <span className="dropdown-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M7 10l5 5 5-5H7z" fill="#000" />
-                    </svg>
-                </span>
-            </button>
-            {isOpen && (
-                <div className="dropdown-menu">
-                    {layers.map(layer => (
-                        <div
-                            key={layer.id}
-                            className={`dropdown-item ${layer.visible ? 'enabled' : 'disabled'}`}
-                            onClick={() => handleLayerClick(layer.id)}
-                        >
-                            {layer.title}
-                        </div>
-                    ))}
-                </div>
-            )}
-        </div>
-    );
+
+    //TODO: find a better place/what to do with this.
+    // return (
+    //     <div className="custom-dropdown" ref={dropdownRef}>
+    //         <button className="dropdown-toggle" onClick={handleToggleDropdown}>
+    //             <span className="dropdown-label">{tag}</span>  {/* Display the tag */}
+    //             <span className="dropdown-icon">
+    //                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    //                     <path d="M7 10l5 5 5-5H7z" fill="#000" />
+    //                 </svg>
+    //             </span>
+    //         </button>
+    //         {isOpen && (
+    //             <div className="dropdown-menu">
+    //                 {layers.map(layer => (
+    //                     <div
+    //                         key={layer.id}
+    //                         className={`dropdown-item ${layer.visible ? 'enabled' : 'disabled'}`}
+    //                         onClick={() => handleLayerClick(layer.id)}
+    //                     >
+    //                         {layer.title}
+    //                     </div>
+    //                 ))}
+    //             </div>
+    //         )}
+    //     </div>
+    // );
 };
 
 export default CustomDropdown;

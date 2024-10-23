@@ -131,6 +131,10 @@
   flex-grow: 6; /* Grow factor */
 }
 
+.full-page {
+  width: 100%;
+}
+
 .main-content {
   margin-top: 1%;
   display: flex;
