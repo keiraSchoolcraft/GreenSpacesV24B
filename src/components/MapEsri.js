@@ -19,7 +19,7 @@ const MapEsri = () => {
             // Create a new WebMap instance
             const webMap = new WebMap({
                 portalItem: {
-                    id: 'd2d53624cf7f459b99c2f671f1b75130' // Replace with your WebMap ID
+                    id: '576d52c0fd554ab190e356830de6d713' // Replace with your WebMap ID
                 }
             });
 
