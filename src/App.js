@@ -65,14 +65,14 @@ function App() {
 
                 <div className="main-content">
                     <LeftSidebar/>
-                    <div className="two-fourth">
+                    <div className="full-page">
                         <div>
                             <MapEsri/>
                         </div>
                     </div>
-                    <div className="one-fourth">
+                    {/* <div className="one-fourth">
                         <RightSideBar filteredEffects={filteredEffects}/>
-                    </div>
+                    </div> */}
                 </div>
                 <div className="Footer">
                     <Footer/>
