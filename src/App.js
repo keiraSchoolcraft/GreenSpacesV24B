@@ -8,6 +8,8 @@ import './App.css';
 import MapEsri from "./components/MapEsri";
 import SearchBar from "./components/SearchBar";
 import {useSelector} from "react-redux";
+import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
+import Contact from './Contact';
 
 function App() {
     const [searchTerm, setSearchTerm] = useState("");
@@ -43,42 +45,99 @@ function App() {
         setFilterCriteria(prevState => prevState.includes(characteristic) ? prevState.filter(item => item !== characteristic) : [...prevState, characteristic]);
     };
 
-    return (<div className="App">
-            <div className="content">
-                <div className="Header">
-                    <Header/>
-                </div>
-                <div className="NavBar">
-                    <div className="Nav">
-                        <Nav/>
+    return (
+        <Router>
+            <div className="App">
+                <div className='content'>
+                    <div className='Header'>
+                        <Header />
                     </div>
-                    <div className="SearchBar">
-                        <SearchBar
-                            searchTerm={searchTerm}
-                            setSearchTerm={setSearchTerm}
-                            filterCriteria={filterCriteria}
-                            handleCheckboxChange={handleCheckboxChange}
-                            setFilterCriteria={setFilterCriteria}
-                        />
+                    <div>
+                        <nav className="NavBar">
+                            <div className='Nav'>
+                                <Nav />
+                            </div>
+                            <div className="SearchBar">
+                                <SearchBar
+                                    searchTerm={searchTerm}
+                                    setSearchTerm={setSearchTerm}
+                                    filterCriteria={filterCriteria}
+                                    handleCheckboxChange={handleCheckboxChange}
+                                    setFilterCriteria={setFilterCriteria}
+                                />
+                            </div>
+                        </nav>
                     </div>
+
+                    <div className='main-content'>
+
+                        <div className='full-page'>
+
+                            <Routes>
+                                <Route path="/" element={
+                                    <div>
+                                        <MapEsri />
+                                    </div>} />
+                                <Route path="/contact" element={<Contact />} />
+                            </Routes>
+
+                        </div>
+
+                    </div>
+
                 </div>
 
-                <div className="main-content">
-                    <LeftSidebar/>
-                    <div className="full-page">
-                        <div>
-                            <MapEsri/>
-                        </div>
-                    </div>
-                    {/* <div className="one-fourth">
-                        <RightSideBar filteredEffects={filteredEffects}/>
-                    </div> */}
-                </div>
-                <div className="Footer">
-                    <Footer/>
-                </div>
+
+
             </div>
-        </div>);
+        </Router>
+    );
+
+
+
+    // return (
+    //     <Router>
+    //         <div className="App">
+    //                 <div className="content">
+    //                     <div className="Header">
+    //                         <Header/>
+    //                     </div>
+    //                     <div className="NavBar">
+    //                         <div className="Nav">
+    //                             <Nav/>
+    //                         </div>
+    //                         <div className="SearchBar">
+    //                             <SearchBar
+    //                                 searchTerm={searchTerm}
+    //                                 setSearchTerm={setSearchTerm}
+    //                                 filterCriteria={filterCriteria}
+    //                                 handleCheckboxChange={handleCheckboxChange}
+    //                                 setFilterCriteria={setFilterCriteria}
+    //                             />
+    //                         </div>
+    //                     </div>
+
+    //                     <div className="main-content">
+    //                         <LeftSidebar/>
+    //                         <div className="full-page">
+    //                             <div>
+    //                                 <MapEsri/>
+    //                             </div>
+    //                         </div>
+    //                         {/* <div className="one-fourth">
+    //                             <RightSideBar filteredEffects={filteredEffects}/>
+    //                         </div> */}
+    //                     </div>
+    //                     <div className="Footer">
+    //                         <Footer/>
+    //                     </div>
+    //                 </div>
+    //                 <Routes>
+    //                     <Route path="/contact" element={<Contact />} />
+    //                 </Routes>
+    //             </div>
+
+    //         </Router>);
 }
 
 export default App;
