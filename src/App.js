@@ -10,6 +10,7 @@ import SearchBar from "./components/SearchBar";
 import {useSelector} from "react-redux";
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import Contact from './Contact';
+import About from './About';
 
 function App() {
     const [searchTerm, setSearchTerm] = useState("");
@@ -79,6 +80,7 @@ function App() {
                                         <MapEsri />
                                     </div>} />
                                 <Route path="/contact" element={<Contact />} />
+                                <Route path ="/about" element={<About />} />
                             </Routes>
 
                         </div>
