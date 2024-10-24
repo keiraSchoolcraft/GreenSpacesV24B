@@ -82,13 +82,12 @@ function App() {
                             </Routes>
 
                         </div>
-
                     </div>
 
+                    <div className='Footer'>
+                        <Footer />
+                    </div>
                 </div>
-
-
-
             </div>
         </Router>
     );
