@@ -7,6 +7,7 @@ import { updateSidebar } from './actions';
 import store from "./store";
 import { useSelector } from "react-redux";
 import CustomDropdown from './CustomDropdown'; // Import the CustomDropdown component
+import Locate from '@arcgis/core/widgets/Locate';
 
 const MapEsri = () => {
     const mapRef = useRef(null);
@@ -52,6 +53,17 @@ const MapEsri = () => {
             await webMap.when();
 
             const layersByTag = {};
+
+            // Add Locate widget
+            const locateWidget = new Locate({
+                view: view,
+                useHeadingEnabled: false,
+                goToOverride: (view, options) => {
+                options.target.scale = 1500; // Adjust zoom scale
+                return view.goTo(options.target);
+                },
+            });
+            view.ui.add(locateWidget, 'top-left');
 
             // Process each layer
             for (const layer of webMap.layers) {
@@ -115,15 +127,19 @@ const MapEsri = () => {
 
     return (
         <div className="map-container">
-            {Object.keys(taggedLayers).map(tag => (
-                <CustomDropdown
-                    key={tag}
-                    tag={tag}
-                    layers={taggedLayers[tag]}
-                    onSelectLayer={toggleLayerVisibility}
-                />
-            ))}
-            <div className="mapbox" ref={mapRef}></div>
+            <div className="mapbox" ref={mapRef}>
+                <div className='style-dropdown'>
+                    {/* <p> Filter </p> */}
+                    {Object.keys(taggedLayers).map(tag => (
+                        <CustomDropdown
+                            key={tag}
+                            tag={tag}
+                            layers={taggedLayers[tag]}
+                            onSelectLayer={toggleLayerVisibility}
+                        />
+                    ))}
+                </div>
+            </div>
         </div>
     );
 };

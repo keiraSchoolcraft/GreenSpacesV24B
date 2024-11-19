@@ -58,7 +58,7 @@ function App() {
                             <div className='Nav'>
                                 <Nav />
                             </div>
-                            <div className="SearchBar">
+                            {/* <div className="SearchBar">
                                 <SearchBar
                                     searchTerm={searchTerm}
                                     setSearchTerm={setSearchTerm}
@@ -66,7 +66,7 @@ function App() {
                                     handleCheckboxChange={handleCheckboxChange}
                                     setFilterCriteria={setFilterCriteria}
                                 />
-                            </div>
+                            </div> */}
                         </nav>
                     </div>
 
