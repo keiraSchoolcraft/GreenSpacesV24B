@@ -29,6 +29,6 @@
     font-size: 14px;
 }
 
-.esri-popup__main-container { /* This kills the popup! remember to comment it in development for ease */
+/*.esri-popup__main-container { 
     display: none;
-}
+}*/
