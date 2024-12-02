@@ -104,56 +104,7 @@ const MapEsri = () => {
                 title: 'All Green Spaces',
                 layers: [giudecca, sanpolo_santacroce, dorsoduro_sanmarco, castello, cannaregio],
             });
-            // const all_green = new GroupLayer({
-            //     title: 'All Green Spaces',
-            //     layers: [
-            //         new FeatureLayer({
-            //             portalItem: {
-            //                 id: "2bae2e4654f541deb17e69fba5063368", // Replace with the actual portal item ID
-            //             },
-            //             outFields: ["*"], // Ensure all attributes are available
-            //             popupTemplate: popupTemplate
-            //         }),
-            //         new FeatureLayer({
-            //             portalItem: {
-            //                 id: "ade1dbff227f43eb8723fba7a89a1915", // Replace with the actual portal item ID
-            //             },
-            //             outFields: ["*"], // Ensure all attributes are available
-            //             popupTemplate: popupTemplate
-            //         }),
-            //         new FeatureLayer({
-            //             portalItem: {
-            //                 id: "91fdb555264747b88c3c2aa615305d6b", // Replace with the actual portal item ID
-            //             },
-            //             outFields: ["*"], // Ensure all attributes are available
-            //             popupTemplate: popupTemplate
-            //         }),
-            //         new FeatureLayer({
-            //             portalItem: {
-            //                 id: "b649fb92ae3948f298e8dc1e20603c25", // Replace with the actual portal item ID
-            //             },
-            //             outFields: ["*"], // Ensure all attributes are available
-            //             popupTemplate: popupTemplate
-            //         }),
-            //         new FeatureLayer({
-            //             portalItem: {
-            //                 id: "823997a1359047f1a3018ae03e4292d2", // Replace with the actual portal item ID
-            //             },
-            //             outFields: ["*"], // Ensure all attributes are available
-            //             popupTemplate: popupTemplate
-            //         }),
-            //     ]
-            // })
             webMap.add(all_green);
-
-            // const giudecca_green = new FeatureLayer({
-            //     portalItem: {
-            //       id: "2bae2e4654f541deb17e69fba5063368", // Replace with the actual portal item ID
-            //     },
-            //     outFields: ["*"], // Ensure all attributes are available
-            //     popupTemplate: popupTemplate
-            // });
-            // webMap.add(giudecca_green);
 
             // Create a new MapView instance
             const view = new MapView({
@@ -164,12 +115,11 @@ const MapEsri = () => {
                 popupEnabled: true
             });
             
-
             // Store the view instance in the ref
             viewRef.current = view;
 
-            view.popupEnabled = true; // Ensure popups are enabled globally
-            let highlight; // Keep a reference to the highlighted feature
+            view.popupEnabled = true; // ensure popups are enabled globally
+            let highlight; // keep a reference to the highlighted feature
 
             
             view.on("click", (event) => {
@@ -212,39 +162,6 @@ const MapEsri = () => {
 
             // Wait for webMap to be fully loaded
             await webMap.when();
-
-            // const applyFilter = () => {
-            //     if (!accessDropdown.current) return; // Guard clause
-          
-            //     const selectedAccess = accessDropdown.current.value;
-            //     let whereClause = "1=1"; // Default to "all" which shows everything
-          
-            //     if (selectedAccess === "full") {
-            //         whereClause = "access = 'Full'";
-            //     } else if (selectedAccess === "semi") {
-            //         whereClause = "access = 'Limited'";
-            //     } else if (selectedAccess === "none") {
-            //         whereClause = "access = 'None'";
-            //     }
-          
-            //     // Apply the filter to the feature layer
-            //     giudecca_green.definitionExpression = whereClause;
-            //     console.log(`Filter applied: ${whereClause}`);
-          
-            //     giudecca_green.refresh(); // Refresh the layer to apply the filter
-            //   };
-          
-            //   // Attach the filter function to the dropdown's onChange event
-            //   if (accessDropdown.current) {
-            //     accessDropdown.current.addEventListener("change", applyFilter);
-            //   }
-          
-            //   // Cleanup event listener on component unmount
-            //   return () => {
-            //     if (accessDropdown.current) {
-            //       accessDropdown.current.removeEventListener("change", applyFilter);
-            //     }
-            // };
 
             filterButton.addEventListener('click', () => {
                 const selectedAccess = accessDropdown.value;
