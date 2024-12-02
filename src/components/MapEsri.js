@@ -10,7 +10,6 @@ import CustomDropdown from './CustomDropdown'; // Import the CustomDropdown comp
 import Locate from '@arcgis/core/widgets/Locate';
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 
-
 const MapEsri = () => {
     const mapRef = useRef(null);
     const mapCenterCoordinates = useSelector(state => state.centerMap);
