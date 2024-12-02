@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import WebMap from '@arcgis/core/WebMap';
 import MapView from '@arcgis/core/views/MapView';
+import GroupLayer from "@arcgis/core/layers/GroupLayer.js";
 import '@arcgis/core/assets/esri/themes/light/main.css';
 import './MapEsri.css';
 // import { updateSidebar } from './actions';
@@ -21,6 +22,7 @@ const MapEsri = () => {
 
     useEffect(() => {
         const initializeMap = async () => {
+
             // Create a new WebMap instance
             const webMap = new WebMap({
                 portalItem: {
@@ -40,15 +42,98 @@ const MapEsri = () => {
                   `
                 }]
             };
-
-            const giudecca_green = new FeatureLayer({
+            
+            const giudecca = new FeatureLayer({
                 portalItem: {
-                  id: "2bae2e4654f541deb17e69fba5063368", // Replace with the actual portal item ID
+                    id: "2bae2e4654f541deb17e69fba5063368", // Replace with the actual portal item ID
                 },
                 outFields: ["*"], // Ensure all attributes are available
                 popupTemplate: popupTemplate
             });
-            webMap.add(giudecca_green);
+            const dorsoduro_sanmarco = new FeatureLayer({
+                portalItem: {
+                    id: "823997a1359047f1a3018ae03e4292d2", // Replace with the actual portal item ID
+                },
+                outFields: ["*"], // Ensure all attributes are available
+                popupTemplate: popupTemplate
+            });
+            const sanpolo_santacroce = new FeatureLayer({
+                portalItem: {
+                    id: "b649fb92ae3948f298e8dc1e20603c25", // Replace with the actual portal item ID
+                },
+                outFields: ["*"], // Ensure all attributes are available
+                popupTemplate: popupTemplate
+            });
+            const castello = new FeatureLayer({
+                portalItem: {
+                    id: "ade1dbff227f43eb8723fba7a89a1915", // Replace with the actual portal item ID
+                },
+                outFields: ["*"], // Ensure all attributes are available
+                popupTemplate: popupTemplate
+            });
+            const cannaregio = new FeatureLayer({
+                portalItem: {
+                    id: "91fdb555264747b88c3c2aa615305d6b", // Replace with the actual portal item ID
+                },
+                outFields: ["*"], // Ensure all attributes are available
+                popupTemplate: popupTemplate
+            });
+
+            //making a group layer so it can show everything I want it to show (burough-wise)
+            const all_green = new GroupLayer({
+                title: 'All Green Spaces',
+                layers: [giudecca, sanpolo_santacroce, dorsoduro_sanmarco, castello, cannaregio],
+            });
+            // const all_green = new GroupLayer({
+            //     title: 'All Green Spaces',
+            //     layers: [
+            //         new FeatureLayer({
+            //             portalItem: {
+            //                 id: "2bae2e4654f541deb17e69fba5063368", // Replace with the actual portal item ID
+            //             },
+            //             outFields: ["*"], // Ensure all attributes are available
+            //             popupTemplate: popupTemplate
+            //         }),
+            //         new FeatureLayer({
+            //             portalItem: {
+            //                 id: "ade1dbff227f43eb8723fba7a89a1915", // Replace with the actual portal item ID
+            //             },
+            //             outFields: ["*"], // Ensure all attributes are available
+            //             popupTemplate: popupTemplate
+            //         }),
+            //         new FeatureLayer({
+            //             portalItem: {
+            //                 id: "91fdb555264747b88c3c2aa615305d6b", // Replace with the actual portal item ID
+            //             },
+            //             outFields: ["*"], // Ensure all attributes are available
+            //             popupTemplate: popupTemplate
+            //         }),
+            //         new FeatureLayer({
+            //             portalItem: {
+            //                 id: "b649fb92ae3948f298e8dc1e20603c25", // Replace with the actual portal item ID
+            //             },
+            //             outFields: ["*"], // Ensure all attributes are available
+            //             popupTemplate: popupTemplate
+            //         }),
+            //         new FeatureLayer({
+            //             portalItem: {
+            //                 id: "823997a1359047f1a3018ae03e4292d2", // Replace with the actual portal item ID
+            //             },
+            //             outFields: ["*"], // Ensure all attributes are available
+            //             popupTemplate: popupTemplate
+            //         }),
+            //     ]
+            // })
+            webMap.add(all_green);
+
+            // const giudecca_green = new FeatureLayer({
+            //     portalItem: {
+            //       id: "2bae2e4654f541deb17e69fba5063368", // Replace with the actual portal item ID
+            //     },
+            //     outFields: ["*"], // Ensure all attributes are available
+            //     popupTemplate: popupTemplate
+            // });
+            // webMap.add(giudecca_green);
 
             // Create a new MapView instance
             const view = new MapView({
@@ -79,7 +164,7 @@ const MapEsri = () => {
                       }
                   // Find the clicked graphic from the 'giudecca_green' layer
                   const graphic = hitTestResults.results.find(
-                    (result) => result.graphic && result.graphic.layer === giudecca_green
+                    (result) => result.graphic && result.graphic.layer === all_green
                   )?.graphic;
               
                   if (graphic) {
@@ -154,13 +239,12 @@ const MapEsri = () => {
                 } else if (selectedAccess === "none") {
                     whereClause = "access = 'None'";
                 }
-            
-                // Apply the filter to the feature layer
-                giudecca_green.definitionExpression = whereClause;
-                console.log(`Filter applied: ${whereClause}`);
-            
-                // You can refresh the layer or map view if needed
-                giudecca_green.refresh();
+
+                all_green.layers.forEach((layer) => {
+                    if (layer instanceof FeatureLayer) {
+                      layer.definitionExpression = whereClause;
+                    }
+                });
             });
 
             const layersByTag = {};
