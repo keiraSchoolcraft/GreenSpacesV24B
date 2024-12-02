@@ -4,6 +4,8 @@ import MapView from '@arcgis/core/views/MapView';
 import GroupLayer from "@arcgis/core/layers/GroupLayer.js";
 import '@arcgis/core/assets/esri/themes/light/main.css';
 import './MapEsri.css';
+import SimpleFillSymbol from '@arcgis/core/symbols/SimpleFillSymbol';
+import SimpleRenderer from '@arcgis/core/renderers/SimpleRenderer';
 // import { updateSidebar } from './actions';
 // import store from "./store";
 import { useSelector } from "react-redux";
@@ -23,6 +25,19 @@ const MapEsri = () => {
     useEffect(() => {
         const initializeMap = async () => {
 
+            // Define a green fill symbol
+            const greenFillSymbol = new SimpleFillSymbol({
+                color: [46, 171, 38, 1], // RGBA (Green with 50% transparency)
+                outline: {
+                    color: [0, 128, 0], // Dark green for outline
+                    width: 1, // Outline width
+                },
+            });
+            // Define a renderer with the green fill symbol
+            const greenRenderer = new SimpleRenderer({
+                symbol: greenFillSymbol,
+            });
+            
             // Create a new WebMap instance
             const webMap = new WebMap({
                 portalItem: {
@@ -48,35 +63,40 @@ const MapEsri = () => {
                     id: "2bae2e4654f541deb17e69fba5063368", // Replace with the actual portal item ID
                 },
                 outFields: ["*"], // Ensure all attributes are available
-                popupTemplate: popupTemplate
+                popupTemplate: popupTemplate,
+                renderer: greenRenderer,
             });
             const dorsoduro_sanmarco = new FeatureLayer({
                 portalItem: {
                     id: "823997a1359047f1a3018ae03e4292d2", // Replace with the actual portal item ID
                 },
                 outFields: ["*"], // Ensure all attributes are available
-                popupTemplate: popupTemplate
+                popupTemplate: popupTemplate,
+                renderer: greenRenderer,
             });
             const sanpolo_santacroce = new FeatureLayer({
                 portalItem: {
                     id: "b649fb92ae3948f298e8dc1e20603c25", // Replace with the actual portal item ID
                 },
                 outFields: ["*"], // Ensure all attributes are available
-                popupTemplate: popupTemplate
+                popupTemplate: popupTemplate,
+                renderer: greenRenderer,
             });
             const castello = new FeatureLayer({
                 portalItem: {
                     id: "ade1dbff227f43eb8723fba7a89a1915", // Replace with the actual portal item ID
                 },
                 outFields: ["*"], // Ensure all attributes are available
-                popupTemplate: popupTemplate
+                popupTemplate: popupTemplate,
+                renderer: greenRenderer,
             });
             const cannaregio = new FeatureLayer({
                 portalItem: {
                     id: "91fdb555264747b88c3c2aa615305d6b", // Replace with the actual portal item ID
                 },
                 outFields: ["*"], // Ensure all attributes are available
-                popupTemplate: popupTemplate
+                popupTemplate: popupTemplate,
+                renderer: greenRenderer,
             });
 
             //making a group layer so it can show everything I want it to show (burough-wise)
@@ -245,6 +265,7 @@ const MapEsri = () => {
                       layer.definitionExpression = whereClause;
                     }
                 });
+
             });
 
             const layersByTag = {};
