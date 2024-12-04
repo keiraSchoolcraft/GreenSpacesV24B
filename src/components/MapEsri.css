@@ -29,6 +29,12 @@
     font-size: 14px;
 }
 
+/* Optional: Styling for the dropdown */
+.dropdown {
+    height: 3lvh;
+    width: 15lvw;
+}
+
 /*.esri-popup__main-container { 
     display: none;
 }*/

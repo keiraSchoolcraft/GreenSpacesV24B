@@ -263,13 +263,24 @@ const MapEsri = () => {
             <div className="mapbox" ref={mapRef}>
                 <div className='style-dropdown'>
                 <div>
-                    <select id="accessDropdown">
-                        <option value="all">All</option>
-                        <option value="full">Public</option>
-                        <option value="semi">Semi-Public</option>
-                        <option value="none">Private</option>
-                    </select>
-                    <button id="filterButton">Apply</button>
+                    <div>
+                        <select id="accessDropdown" className='dropdown'>
+                            <option value="all">All Accessibility Types</option>
+                            <option value="full">Public Access</option>
+                            <option value="semi">Semi-Public Access</option>
+                            <option value="none">Private Access</option>
+                        </select>
+                        <button id="filterButton">Apply</button>
+                    </div>
+                    <div>
+                        <select id="isochroneDropdown" className='dropdown'>
+                            <option value="noIsochrones">Choose Isochrones...</option>
+                            <option value="public">Public Isochrones 5min</option>
+                            <option value="semipublic">Public Isochrones 3min & 5min</option>
+                        </select>
+                        <button id="isochroneButton">Apply</button>
+                    </div>
+
                     </div>
                     {/* <p> Filter </p> */}
                     {Object.keys(taggedLayers).map(tag => (
