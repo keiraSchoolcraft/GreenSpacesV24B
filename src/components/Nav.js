@@ -11,13 +11,7 @@ function Nav() {
                     <a href="/" className="nav-link">Home</a>
                 </li>
                 <li className="nav-item">
-                    <a href="/about" className="nav-link">About</a>
-                </li>
-                <li className="nav-item">
-                    <a href="#services" className="nav-link">Services</a>
-                </li>
-                <li className="nav-item">
-                    <Link to="/contact" className="nav-link">Contact</Link>
+                    <Link to="/contact" className="nav-link">Our Team</Link>
                 </li>
             </ul>
         </nav>
