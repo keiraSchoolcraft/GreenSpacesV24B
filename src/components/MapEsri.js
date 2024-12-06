@@ -65,6 +65,8 @@ const MapEsri = () => {
                 outFields: ["*"], // Ensure all attributes are available
                 popupTemplate: popupTemplate,
                 renderer: greenRenderer,
+                minScale: 0,
+                maxScale: 0, 
             });
             const dorsoduro_sanmarco = new FeatureLayer({
                 portalItem: {
@@ -73,6 +75,8 @@ const MapEsri = () => {
                 outFields: ["*"], // Ensure all attributes are available
                 popupTemplate: popupTemplate,
                 renderer: greenRenderer,
+                minScale: 0,
+                maxScale: 0, 
             });
             const sanpolo_santacroce = new FeatureLayer({
                 portalItem: {
@@ -81,6 +85,8 @@ const MapEsri = () => {
                 outFields: ["*"], // Ensure all attributes are available
                 popupTemplate: popupTemplate,
                 renderer: greenRenderer,
+                minScale: 0,
+                maxScale: 0, 
             });
             const castello = new FeatureLayer({
                 portalItem: {
@@ -89,6 +95,8 @@ const MapEsri = () => {
                 outFields: ["*"], // Ensure all attributes are available
                 popupTemplate: popupTemplate,
                 renderer: greenRenderer,
+                minScale: 0,
+                maxScale: 0, 
             });
             const cannaregio = new FeatureLayer({
                 portalItem: {
@@ -97,6 +105,8 @@ const MapEsri = () => {
                 outFields: ["*"], // Ensure all attributes are available
                 popupTemplate: popupTemplate,
                 renderer: greenRenderer,
+                minScale: 0,
+                maxScale: 0, 
             });
 
             //making a group layer so it can show everything I want it to show (burough-wise)
